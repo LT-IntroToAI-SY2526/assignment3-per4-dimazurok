@@ -204,7 +204,7 @@ def title_by_actor(matches: List[str]) -> List[str]:
         if actor in get_actors(movie) :
             result.append(get_title(movie))
     return result
-
+# MY ACTION FUNCTION ->
 def director_by_actor(matches: List[str]) -> List[str]:
     """Finds directors who have directed movies that the given actor was in
 
@@ -257,7 +257,14 @@ def search_pa_list(src: List[str]) -> List[str]:
         a list of answers. Will be ["I don't understand"] if it finds no matches and
         ["No answers"] if it finds a match but no answers
     """
-    pass
+    for pat, act in pa_list:
+        mat = match(pat, src)
+
+        if mat is not None:
+            answer = act(mat)
+            return answer if answer else ["No answers"]
+        
+    return ["I don't understand"]
 
 
 def query_loop() -> None:
@@ -299,7 +306,7 @@ if __name__ == "__main__":
     ), "failed title_before_year test"
     assert isinstance(title_after_year(["1990"]), list), "title_after_year not returning a list"
     assert sorted(title_after_year(["1990"])) == sorted(
-        ["boyz n the hood", "dead again", "the crying game", "flirting", "malcolm x"]
+        ["boyz n the hood", "dead again", "the crying game", "flirting", "malcolm x", "the conjuring last rites"]
     ), "failed title_after_year test"
     assert isinstance(director_by_title(["jaws"]), list), "director_by_title not returning a list"
     assert sorted(director_by_title(["jaws"])) == sorted(

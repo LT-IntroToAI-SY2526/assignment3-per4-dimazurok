@@ -435,4 +435,14 @@ movie_db: List[Tuple[str, str, int, List[str]]] = [
             "spike lee",
         ],
     ),
+    (
+        "the conjuring last rites",
+        "michael chaves",
+        2025,
+        [
+            "mia tomlinson",
+            "vera farmiga",
+            "ben hardy",
+        ],
+    ),
 ]
